@@ -1,175 +1,492 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Gupta Performance Labs helps engineering teams ship faster, more reliable software through performance testing, SRE, observability, resilience engineering and AI/LLM performance benchmarking.">
-  <meta property="og:title" content="Gupta Performance Labs | Performance Engineering & Reliability Consulting">
-  <meta property="og:description" content="Load testing, observability, chaos engineering and AI inference benchmarking from engineers with 20+ years of experience.">
-  <meta property="og:type" content="website">
-  <title>Gupta Performance Labs | Performance Engineering & Reliability Consulting</title>
-  <style>
-    :root {
-      --bg: #080d12; --panel: #101922; --text: #edf4f7;
-      --muted: #a6b5bf; --line: #23313b; --accent: #9bdc28; --accent2: #c6f36b;
-      --max: 1080px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--text); background: radial-gradient(ellipse at 85% 0%, #18301c 0, transparent 33%), var(--bg); font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; }
-    a { color: var(--accent2); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin: auto; }
-    header { position: sticky; top: 0; z-index: 5; background: rgba(8,13,18,.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    nav { min-height: 66px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-    .brand { color:var(--text); font-weight:800; letter-spacing:.02em; }
-    .brand span { color:var(--accent); }
-    .navlinks { display:flex; gap:22px; flex-wrap:wrap; font-size:.9rem; align-items:center; }
-    .navlinks a { color:var(--muted); }
-    .navlinks a.cta { color:#10170b; background:var(--accent); padding:7px 14px; border-radius:8px; font-weight:750; }
-    .hero { padding: 92px 0 76px; display:grid; grid-template-columns: 1.5fr .8fr; gap:50px; align-items:center; }
-    .eyebrow { color:var(--accent); font-weight:750; text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; }
-    h1 { font-size: clamp(2.5rem, 6.4vw, 4.6rem); line-height:1.04; letter-spacing:-.05em; margin:15px 0 20px; }
-    h1 span { color:var(--accent); }
-    .lead { color:#c5d1d8; font-size:1.15rem; max-width:690px; }
-    .hero-card { background:linear-gradient(145deg,#16251c,#101922 65%); border:1px solid #354a32; border-radius:22px; padding:26px; box-shadow:0 20px 60px #0005; }
-    .hero-card .metric { font-size:2rem; font-weight:850; color:var(--accent); line-height:1.1; }
-    .hero-card p { color:var(--muted); margin:.35rem 0 1.2rem; }
-    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
-    .btn { display:inline-block; padding:11px 17px; border-radius:9px; border:1px solid var(--accent); color:#10170b; background:var(--accent); font-weight:750; }
-    .btn.secondary { background:transparent; color:var(--text); border-color:var(--line); }
-    .btn:hover { text-decoration:none; filter:brightness(1.08); }
-    section { padding:64px 0; border-top:1px solid var(--line); }
-    .section-head { margin-bottom:28px; }
-    h2 { font-size:clamp(1.8rem,4vw,2.5rem); letter-spacing:-.035em; margin:5px 0 8px; }
-    .sub { color:var(--muted); max-width:720px; margin:0; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
-    .grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
-    .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; }
-    .card h3 { margin:0 0 8px; font-size:1.12rem; }
-    .card p, .card li { color:var(--muted); }
-    .card ul { margin:10px 0 0; }
-    .taglist { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
-    .tag { border:1px solid #34434c; background:#0c141c; border-radius:999px; padding:5px 10px; color:#c8d4db; font-size:.82rem; }
-    .steps { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; counter-reset:s; }
-    .step { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; }
-    .step::before { counter-increment:s; content:counter(s); display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; border-radius:50%; background:var(--accent); color:#10170b; font-weight:800; margin-bottom:10px; }
-    .step h3 { margin:0 0 6px; font-size:1rem; }
-    .step p { margin:0; color:var(--muted); font-size:.92rem; }
-    ul { padding-left:20px; }
-    .notice { border-left:3px solid var(--accent); padding:12px 16px; background:#111c17; border-radius:0 10px 10px 0; color:#cbd8ce; margin-top:18px; }
-    .contact-box { background:linear-gradient(145deg,#16251c,#101922 65%); border:1px solid #354a32; border-radius:22px; padding:36px; }
-    .contact { display:flex; flex-wrap:wrap; gap:14px; margin-top:20px; }
-    footer { padding:28px 0 44px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
-    @media(max-width:900px) { .steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .grid.three { grid-template-columns:1fr; } }
-    @media(max-width:760px) { .hero { grid-template-columns:1fr; padding:65px 0 55px; gap:28px; } .grid { grid-template-columns:1fr; } .steps { grid-template-columns:1fr; } .navlinks { gap:12px; font-size:.82rem; } .navlinks .hide-sm { display:none; } .contact-box { padding:24px; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gupta Performance Labs | Performance Engineering & Reliability Consulting</title>
+<meta name="description" content="Gupta Performance Labs helps engineering teams find slowdowns before customers do, with performance testing, observability, resilience engineering and AI/LLM benchmarking.">
+<meta property="og:title" content="Gupta Performance Labs | Performance Engineering & Reliability Consulting">
+<meta property="og:description" content="Load testing, observability, chaos engineering and AI inference benchmarking from engineers with 20+ years of experience.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a1530; --ink-2:#111f40; --paper:#f5f7fb; --card:#ffffff; --line:#e1e6f0;
+  --text:#1b2540; --muted:#55627e; --blue:#2f6bff; --blue-soft:#e8efff;
+  --mint:#14c79c; --coral:#ff5c4d;
+  --text-d:#eaf0ff; --muted-d:#9fb0d3; --line-d:rgba(255,255,255,.12);
+  --display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --body:"Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--text);font:17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);margin:0;font-weight:700;letter-spacing:-.03em}
+p{margin:0}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;z-index:20}
+.skip:focus{left:12px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:10;background:rgba(10,21,48,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-d)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--text-d);font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:-.01em}
+.brand:hover{text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:.95rem}
+.nav-links a{color:var(--muted-d)}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.nav-links .nav-cta{background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-weight:600}
+.nav-links .nav-cta:hover{background:#4a80ff}
+
+/* Hero */
+.hero{background:
+  radial-gradient(55% 60% at 82% 18%, rgba(47,107,255,.38), transparent 70%),
+  radial-gradient(40% 40% at 8% 100%, rgba(20,199,156,.16), transparent 70%),
+  linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0/56px 56px,
+  linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0/56px 56px,
+  var(--ink);
+  color:var(--text-d);padding:88px 0 96px}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.4rem);line-height:1.02;color:#fff;font-weight:800;max-width:11.5em}
+.hero .lead{margin-top:22px;font-size:1.18rem;color:var(--muted-d);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-block;font-weight:600;font-size:1rem;padding:13px 22px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;font-family:var(--body);line-height:1.2}
+.btn:hover{text-decoration:none}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#4a80ff}
+.btn-ghost{border-color:var(--line-d);color:var(--text-d);background:transparent}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4)}
+.facts{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:9px;color:var(--muted-d);font-size:.97rem}
+.facts li{display:flex;align-items:center;gap:11px}
+.facts li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);flex:none}
+
+.chart-panel{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid var(--line-d);border-radius:26px;padding:22px 22px 16px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.chart-title{font-family:var(--display);font-size:1.05rem;color:#fff;font-weight:600;margin:2px 4px 10px}
+.chart-panel svg{display:block;width:100%;height:auto}
+.chart-note{margin:8px 4px 0;color:var(--muted-d);font-size:.85rem}
+.chart-text{fill:#9fb0d3;font:13px var(--body)}
+.chart-label{fill:#eaf0ff;font:600 13px var(--body)}
+.draw{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 2.4s cubic-bezier(.4,0,.2,1) .5s both;filter:drop-shadow(0 0 7px currentColor)}
+.draw.late{animation-delay:2.1s}
+.knee{animation:fade .7s ease 2.8s both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.draw,.knee{animation:none}}
+
+/* Sections */
+section{padding:92px 0}
+.section-head{max-width:40rem;margin-bottom:44px}
+.section-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.08}
+.section-head p{margin-top:14px;color:var(--muted);font-size:1.08rem}
+
+/* Services bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.tile{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column}
+.tile.w4{grid-column:span 4;background:linear-gradient(135deg,var(--blue-soft),#f4f7ff 70%);border-color:#d2deff}
+.tile.w6{grid-column:span 6}
+.icon{width:46px;height:46px;border-radius:14px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:18px}
+.icon svg{width:24px;height:24px}
+.tile h3{font-size:1.3rem;line-height:1.15;margin-bottom:10px}
+.tile p{color:var(--muted)}
+.tile .tags{margin-top:auto;padding-top:20px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:.82rem;font-weight:500;padding:4px 11px;border-radius:999px;background:#eef2f8;color:#3b4863}
+.tile.w4 .tag{background:#fff;color:#2a4ba8}
+.tile.dark{background:
+  radial-gradient(60% 90% at 100% 0%, rgba(47,107,255,.45), transparent 70%), var(--ink);
+  border-color:var(--ink);color:var(--text-d);flex-direction:row;gap:40px;align-items:stretch}
+.tile.dark .icon{background:rgba(255,255,255,.1);color:#9db9ff}
+.tile.dark p{color:var(--muted-d)}
+.tile.dark h3{color:#fff;font-size:1.6rem}
+.tile.dark .tag{background:rgba(255,255,255,.1);color:#dbe5ff}
+.ai-main{flex:1.2}
+.ai-measure{flex:1;border-left:1px solid var(--line-d);padding-left:40px;display:flex;flex-direction:column;justify-content:center}
+.ai-measure h4{margin:0 0 12px;font:600 1rem var(--body);color:#fff}
+.ai-measure ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;color:var(--muted-d)}
+.ai-measure li{display:flex;gap:10px;align-items:baseline}
+.ai-measure li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);flex:none;transform:translateY(-1px)}
+
+/* Process */
+.process{background:var(--card);border-block:1px solid var(--line)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:22px;position:relative;counter-reset:step}
+.steps::before{content:"";position:absolute;top:19px;left:19px;right:19px;height:2px;background:linear-gradient(90deg,var(--coral),var(--blue) 50%,var(--mint))}
+.step{position:relative;counter-increment:step}
+.step::before{content:counter(step);position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--blue);color:var(--blue);font:700 1rem var(--display);margin-bottom:16px;z-index:1}
+.step:first-child::before{border-color:var(--coral);color:var(--coral)}
+.step:last-child::before{border-color:var(--mint);color:var(--mint)}
+.step h3{font-size:1.15rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.97rem}
+.evidence{margin-top:40px;padding:18px 22px;border-radius:16px;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
+.evidence strong{color:var(--text)}
+
+/* Why */
+.why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.why-grid h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.08;position:sticky;top:100px}
+.points{display:grid;gap:0}
+.point{padding:24px 0;border-top:1px solid var(--line)}
+.point:last-child{border-bottom:1px solid var(--line)}
+.point h3{font-size:1.2rem;margin-bottom:6px}
+.point p{color:var(--muted)}
+.point .tags{margin-top:14px}
+
+/* Tools */
+.tools{background:var(--ink);color:var(--text-d)}
+.tools .section-head h2{color:#fff}
+.tools .section-head p{color:var(--muted-d)}
+.tool-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.tool-col h3{font-size:1.02rem;color:#fff;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line-d)}
+.tool-col ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;color:var(--muted-d);font-size:.97rem}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px;display:flex;gap:22px;align-items:flex-start}
+.avatar{flex:none;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;color:#fff;font:700 1.35rem var(--display);background:linear-gradient(135deg,var(--blue),var(--mint))}
+.person h3{font-size:1.35rem}
+.role{color:var(--blue);font-weight:600;font-size:.95rem;margin:2px 0 10px}
+.person p{color:var(--muted)}
+.person .links{margin-top:12px;font-size:.95rem;display:flex;gap:16px;flex-wrap:wrap}
+
+/* Credentials */
+.creds{padding-top:0}
+.cred-box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px}
+.cred-box h2{font-size:1.7rem;margin-bottom:20px}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-weight:500;font-size:.95rem}
+.badge svg{width:16px;height:16px;color:var(--mint);flex:none}
+.cred-note{margin-top:20px;color:var(--muted);font-size:.95rem}
+
+/* Contact */
+.contact{padding-top:0}
+.contact-panel{background:
+  radial-gradient(60% 80% at 100% 0%, rgba(47,107,255,.5), transparent 70%),
+  radial-gradient(40% 60% at 0% 100%, rgba(20,199,156,.2), transparent 70%), var(--ink);
+  color:var(--text-d);border-radius:32px;padding:56px;display:grid;grid-template-columns:1fr 1.05fr;gap:52px}
+.contact-panel h2{color:#fff;font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.08}
+.contact-panel .intro{margin-top:16px;color:var(--muted-d)}
+.contact-direct{margin-top:26px;display:grid;gap:6px;color:var(--muted-d);font-size:.97rem}
+.contact-direct a{color:#fff;font-weight:600}
+form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-size:.9rem;font-weight:600;color:#dbe5ff}
+input,textarea{font:400 1rem var(--body);color:#fff;background:rgba(255,255,255,.07);border:1px solid var(--line-d);border-radius:12px;padding:12px 14px;width:100%}
+input::placeholder,textarea::placeholder{color:#7f92bb}
+input:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:1px;border-color:transparent}
+textarea{min-height:130px;resize:vertical}
+.form-note{font-size:.85rem;color:var(--muted-d)}
+
+footer{background:var(--ink);color:var(--muted-d);padding:30px 0;font-size:.92rem}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* Responsive */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .tile,.tile.w4{grid-column:span 1}
+  .tile.w6{grid-column:span 2}
+  .tile.dark{flex-direction:column;gap:24px}
+  .ai-measure{border-left:0;border-top:1px solid var(--line-d);padding-left:0;padding-top:24px}
+  .steps{grid-template-columns:1fr;gap:26px}
+  .steps::before{top:19px;bottom:19px;left:19px;right:auto;width:2px;height:auto}
+  .step{padding-left:60px}
+  .step::before{position:absolute;left:0;top:0;margin:0}
+  .why-grid{grid-template-columns:1fr;gap:28px}
+  .why-grid h2{position:static}
+  .tool-cols{grid-template-columns:repeat(2,1fr)}
+  .contact-panel{grid-template-columns:1fr;padding:36px 26px;gap:34px}
+}
+@media(max-width:640px){
+  section{padding:68px 0}
+  .hero{padding:60px 0 68px}
+  .nav-links a:not(.nav-cta){display:none}
+  .bento{grid-template-columns:1fr}
+  .tile.w6{grid-column:span 1}
+  .team-grid{grid-template-columns:1fr}
+  .person{flex-direction:column}
+  .row{grid-template-columns:1fr}
+  .tool-cols{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <nav aria-label="Main navigation">
-      <a class="brand" href="#top">GUPTA <span>PERFORMANCE LABS</span></a>
-      <div class="navlinks">
-        <a class="hide-sm" href="#services">Services</a><a class="hide-sm" href="#approach">Approach</a><a class="hide-sm" href="#team">Team</a><a class="hide-sm" href="#credentials">Credentials</a>
-        <a class="cta" href="#contact">Contact us</a>
-      </div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Gupta Performance Labs home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2f6bff"/><path d="M6 22c6 0 7-12 12-12h8" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+      Gupta Performance Labs
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#team">Team</a>
+      <a class="nav-cta" href="#contact">Contact us</a>
     </nav>
   </div>
 </header>
 
-<main id="top">
-  <div class="wrap hero">
-    <div>
-      <div class="eyebrow">Performance · Reliability · AI Infrastructure</div>
-      <h1>Software that stays <span>fast</span> and <span>reliable</span> under real-world load.</h1>
-      <p class="lead">Gupta Performance Labs helps engineering teams find bottlenecks before customers do. We provide performance testing, observability, resilience engineering and AI/LLM performance benchmarking, led by engineers with 20+ years of hands-on experience.</p>
-      <div class="actions">
-        <a class="btn" href="mailto:kumarvinodgupta@gmail.com?subject=Free%20consultation%20request">Request a free consultation</a>
-        <a class="btn secondary" href="#services">See our services</a>
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Find the slowdown before your customers do.</h1>
+        <p class="lead">We test, monitor and stress software so it stays fast and reliable as traffic grows. Our team brings 20+ years of hands-on performance engineering, now including AI and LLM services.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Request a free consultation</a>
+          <a class="btn btn-ghost" href="#services">See our services</a>
+        </div>
+        <ul class="facts">
+          <li>20+ years of hands-on experience</li>
+          <li>Gremlin-certified chaos engineering</li>
+          <li>AI and LLM performance benchmarking</li>
+        </ul>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-title">What a performance test reveals</div>
+        <svg viewBox="0 0 560 360" role="img" aria-label="Illustrative chart. Before tuning, response time climbs sharply once load passes a saturation point. After tuning, response time stays flat as load increases.">
+          <g stroke="rgba(255,255,255,.07)">
+            <line x1="56" y1="60" x2="530" y2="60"/><line x1="56" y1="120" x2="530" y2="120"/>
+            <line x1="56" y1="180" x2="530" y2="180"/><line x1="56" y1="240" x2="530" y2="240"/>
+          </g>
+          <path d="M56 40 V300 H530" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+          <text class="chart-text" x="293" y="338" text-anchor="middle">Load: concurrent users</text>
+          <text class="chart-text" transform="rotate(-90)" x="-170" y="20" text-anchor="middle">Response time</text>
+
+          <path class="draw" pathLength="1" style="color:#ff5c4d" d="M56 292 C150 290 240 284 300 262 S 395 140 420 52" fill="none" stroke="#ff5c4d" stroke-width="3.5" stroke-linecap="round"/>
+          <path class="draw late" pathLength="1" style="color:#14c79c" d="M56 294 C170 292 290 288 400 284 S 490 276 520 272" fill="none" stroke="#14c79c" stroke-width="3.5" stroke-linecap="round"/>
+
+          <g class="knee">
+            <circle cx="300" cy="262" r="13" fill="none" stroke="#ff5c4d" stroke-opacity=".45" stroke-width="2"/>
+            <circle cx="300" cy="262" r="5.5" fill="#ff5c4d"/>
+            <text class="chart-label" x="282" y="244" text-anchor="end">Saturation point</text>
+          </g>
+
+          <g>
+            <line x1="78" y1="70" x2="104" y2="70" stroke="#ff5c4d" stroke-width="3.5" stroke-linecap="round"/>
+            <text class="chart-label" x="114" y="75">Before tuning</text>
+            <line x1="78" y1="96" x2="104" y2="96" stroke="#14c79c" stroke-width="3.5" stroke-linecap="round"/>
+            <text class="chart-label" x="114" y="101">After tuning</text>
+          </g>
+        </svg>
+        <p class="chart-note">Illustrative curves for explanation, not client data.</p>
       </div>
     </div>
-    <aside class="hero-card">
-      <div class="metric">20+ years</div><p>Hands-on performance engineering experience</p>
-      <div class="metric">End to end</div><p>From test strategy to bottleneck fixes and monitoring</p>
-      <div class="metric">AI-ready</div><p>Load and benchmark LLM-powered services</p>
-    </aside>
   </div>
 
   <section id="services">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">What we do</div><h2>Services</h2><p class="sub">Practical engineering help, from a one-off load test to a long-term performance practice.</p></div>
-      <div class="grid three">
-        <article class="card"><h3>Performance & load testing</h3><p>Realistic workloads, stress and scalability tests, and clear findings on response time, throughput and errors.</p><div class="taglist"><span class="tag">Gatling</span><span class="tag">JMeter</span><span class="tag">k6</span><span class="tag">LoadRunner</span><span class="tag">BlazeMeter</span></div></article>
-        <article class="card"><h3>Observability & SRE</h3><p>Dashboards, alerting and tracing that make production behavior visible, plus root-cause analysis for incidents.</p><div class="taglist"><span class="tag">Datadog</span><span class="tag">Dynatrace</span><span class="tag">New Relic</span><span class="tag">Grafana</span><span class="tag">Splunk</span></div></article>
-        <article class="card"><h3>Chaos & resilience engineering</h3><p>Controlled failure experiments to validate high availability and recovery before a real outage does it for you.</p><div class="taglist"><span class="tag">Gremlin</span><span class="tag">Litmus</span><span class="tag">Chaos Mesh</span></div></article>
-        <article class="card"><h3>Performance in CI/CD</h3><p>Automated load-test pipelines so every release is checked for performance regressions.</p><div class="taglist"><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Taurus</span><span class="tag">Terraform</span></div></article>
-        <article class="card"><h3>AI & LLM performance benchmarking</h3><p>Measure time to first token, inter-token latency and throughput for LLM-powered services, and validate their APIs.</p><div class="taglist"><span class="tag">AIPerf</span><span class="tag">Ollama</span><span class="tag">Swagger / OpenAPI</span><span class="tag">Insomnia</span></div></article>
-        <article class="card"><h3>Performance CoE & training</h3><p>Set up a performance engineering practice inside your company: frameworks, tooling, standards and team enablement.</p><div class="taglist"><span class="tag">Frameworks</span><span class="tag">Tooling</span><span class="tag">Mentoring</span></div></article>
+      <div class="section-head">
+        <h2>Services built around how software actually fails</h2>
+        <p>Practical engineering help, from a single load test to a long-term performance practice.</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile w4">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/></svg></div>
+          <h3>Performance and load testing</h3>
+          <p>We design realistic workloads, run load, stress and scalability tests, and show exactly where response time, throughput and error rates break down, with evidence your developers can act on.</p>
+          <div class="tags"><span class="tag">Gatling</span><span class="tag">JMeter</span><span class="tag">k6</span><span class="tag">LoadRunner</span><span class="tag">BlazeMeter</span><span class="tag">NeoLoad</span></div>
+        </article>
+
+        <article class="tile">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Observability and SRE</h3>
+          <p>Dashboards, alerting and tracing that make production visible, plus root-cause analysis when incidents happen.</p>
+          <div class="tags"><span class="tag">Datadog</span><span class="tag">Dynatrace</span><span class="tag">New Relic</span><span class="tag">Grafana</span><span class="tag">Splunk</span></div>
+        </article>
+
+        <article class="tile">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+          <h3>Chaos and resilience</h3>
+          <p>Controlled failure experiments that prove your system stays available and recovers.</p>
+          <div class="tags"><span class="tag">Gremlin</span><span class="tag">Litmus</span><span class="tag">Chaos Mesh</span></div>
+        </article>
+
+        <article class="tile">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+          <h3>Performance in CI/CD</h3>
+          <p>Automated load-test pipelines that catch regressions before every release.</p>
+          <div class="tags"><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Taurus</span><span class="tag">Terraform</span></div>
+        </article>
+
+        <article class="tile">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3 3 0 0 1 0 5.6"/><path d="M18 14.4c1.8.8 3 2.7 3 5.6"/></svg></div>
+          <h3>Performance practice and training</h3>
+          <p>Frameworks, tooling and coaching so your own team can own performance long term.</p>
+          <div class="tags"><span class="tag">Frameworks</span><span class="tag">Tooling</span><span class="tag">Mentoring</span></div>
+        </article>
+
+        <article class="tile dark w6">
+          <div class="ai-main">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div>
+            <h3>Benchmark AI and LLM services</h3>
+            <p>Language-model services have their own performance profile. We measure how quickly responses start, how fast they stream and how the system behaves as more people use it, and we validate the APIs behind them.</p>
+            <div class="tags" style="margin-top:20px"><span class="tag">AIPerf</span><span class="tag">Ollama</span><span class="tag">Swagger / OpenAPI</span><span class="tag">Insomnia</span></div>
+          </div>
+          <div class="ai-measure">
+            <h4>What we measure</h4>
+            <ul>
+              <li>Time to first token</li>
+              <li>Inter-token latency</li>
+              <li>Token throughput</li>
+              <li>Behavior at different concurrency levels</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="approach">
+  <section class="process" id="process">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">How we work</div><h2>A simple, transparent process</h2><p class="sub">You always know what we are testing, why, and what we found.</p></div>
-      <div class="steps">
-        <div class="step"><h3>Discover</h3><p>Understand your system, users, goals and risks.</p></div>
-        <div class="step"><h3>Design</h3><p>Define workloads, success criteria and the test plan.</p></div>
-        <div class="step"><h3>Execute</h3><p>Run tests in a controlled, monitored environment.</p></div>
-        <div class="step"><h3>Analyze</h3><p>Trace bottlenecks to their root cause with evidence.</p></div>
-        <div class="step"><h3>Improve</h3><p>Deliver clear recommendations and re-test the fixes.</p></div>
+      <div class="section-head">
+        <h2>A clear process, from first call to verified fix</h2>
+        <p>You always know what we are testing, why, and what we found.</p>
       </div>
-      <div class="notice"><strong>Evidence first:</strong> every report states the workload, environment, method and results, so you can trust and repeat what we measured.</div>
+      <ol class="steps">
+        <li class="step"><h3>Discover</h3><p>We learn your system, users, goals and risks.</p></li>
+        <li class="step"><h3>Design</h3><p>We define workloads, success criteria and the test plan.</p></li>
+        <li class="step"><h3>Execute</h3><p>We run tests in a controlled, monitored environment.</p></li>
+        <li class="step"><h3>Analyze</h3><p>We trace each bottleneck to its root cause.</p></li>
+        <li class="step"><h3>Improve</h3><p>We recommend fixes and re-test to confirm them.</p></li>
+      </ol>
+      <p class="evidence"><strong>Evidence in every report.</strong> Each report states the workload, environment, method and results, so you can verify and repeat what we measured.</p>
     </div>
   </section>
 
   <section id="why">
+    <div class="wrap why-grid">
+      <h2>Senior, hands-on expertise from first test to final report</h2>
+      <div class="points">
+        <div class="point">
+          <h3>Two decades in the field</h3>
+          <p>20+ years across performance testing, site reliability and DevOps, including leading a performance Center of Excellence and building test labs and monitoring from scratch.</p>
+        </div>
+        <div class="point">
+          <h3>Cloud-native by default</h3>
+          <p>Microservices, Kubernetes, GCP, AWS and CDN-fronted applications, tested and monitored with industry-standard tools.</p>
+        </div>
+        <div class="point">
+          <h3>Experience across industries</h3>
+          <p>Our lead engineer has delivered performance work in these domains.</p>
+          <div class="tags"><span class="tag">Finance</span><span class="tag">Health and auto insurance</span><span class="tag">Retail</span><span class="tag">Media</span><span class="tag">Digital marketing</span><span class="tag">Data as a service</span></div>
+        </div>
+        <div class="point">
+          <h3>Engagements that fit your needs</h3>
+          <p>Choose a defined project, an ongoing monthly retainer, or advisory support for strategy, tooling and team coaching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tools" aria-labelledby="tools-h">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Why teams work with us</div><h2>Built on real production experience</h2></div>
-      <div class="grid">
-        <article class="card"><h3>Hands-on senior expertise</h3><ul><li>20+ years across performance testing, SRE and DevOps</li><li>Experience leading a performance Center of Excellence</li><li>Comfortable building test labs, load generators and monitoring from scratch</li></ul></article>
-        <article class="card"><h3>Broad industry background</h3><p>Our lead engineer has delivered performance work across several industries.</p><div class="taglist"><span class="tag">Finance</span><span class="tag">Health & auto insurance</span><span class="tag">Retail</span><span class="tag">Media</span><span class="tag">Digital marketing</span><span class="tag">Data as a service</span></div></article>
-        <article class="card"><h3>Modern, cloud-native stack</h3><p>Microservices, Kubernetes, GCP, AWS and CDN-fronted applications, tested and monitored with industry-standard tools.</p><div class="taglist"><span class="tag">Kubernetes</span><span class="tag">GCP</span><span class="tag">AWS</span><span class="tag">Cloudflare</span><span class="tag">Linux</span></div></article>
-        <article class="card"><h3>Flexible engagements</h3><ul><li><strong>Project-based:</strong> a defined test or assessment</li><li><strong>Retainer:</strong> ongoing performance support</li><li><strong>Advisory:</strong> strategy, tooling and team coaching</li></ul></article>
+      <div class="section-head">
+        <h2 id="tools-h">Tools we work with</h2>
+        <p>We choose the right tool for your stack rather than forcing one.</p>
+      </div>
+      <div class="tool-cols">
+        <div class="tool-col"><h3>Load testing</h3><ul><li>Gatling</li><li>JMeter</li><li>k6</li><li>LoadRunner</li><li>BlazeMeter and Taurus</li><li>NeoLoad, Artillery, Playwright</li></ul></div>
+        <div class="tool-col"><h3>Monitoring</h3><ul><li>Datadog</li><li>Dynatrace</li><li>New Relic</li><li>AppDynamics</li><li>Grafana</li><li>Splunk</li></ul></div>
+        <div class="tool-col"><h3>Cloud and DevOps</h3><ul><li>Kubernetes and Docker</li><li>Terraform</li><li>Jenkins and Git</li><li>GCP and AWS</li><li>Cloudflare CDN</li><li>Linux tuning</li></ul></div>
+        <div class="tool-col"><h3>Resilience and AI</h3><ul><li>Gremlin</li><li>Litmus and Chaos Mesh</li><li>AIPerf</li><li>Ollama</li><li>Swagger and Insomnia</li><li>GitHub Copilot</li></ul></div>
       </div>
     </div>
   </section>
 
   <section id="team">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Leadership</div><h2>Meet the team</h2></div>
-      <div class="grid">
-        <article class="card"><h3>Meenakshi Gupta</h3><p><strong>Founder & Owner</strong></p><p>Leads the company and is your point of contact for engagements, scope and business matters.</p></article>
-        <article class="card"><h3>Vinod Kumar</h3><p><strong>Principal Performance Engineer</strong></p><p>20+ years in performance engineering, SRE and DevOps, including leading a performance Center of Excellence. Gremlin-certified chaos engineering practitioner with growing hands-on work in LLM inference benchmarking.</p><p><a href="https://www.linkedin.com/in/vinod-kumar-0a890518/" target="_blank" rel="noopener">LinkedIn ↗</a> · <a href="https://kumarvinnodg.github.io/my-profile/" target="_blank" rel="noopener">Full profile ↗</a></p></article>
+      <div class="section-head">
+        <h2>The people behind the work</h2>
+      </div>
+      <div class="team-grid">
+        <article class="person">
+          <div class="avatar" aria-hidden="true">MG</div>
+          <div>
+            <h3>Meenakshi Gupta</h3>
+            <div class="role">Founder and owner</div>
+            <p>Leads the company and is your point of contact for scope, schedules and business matters.</p>
+          </div>
+        </article>
+        <article class="person">
+          <div class="avatar" aria-hidden="true">VK</div>
+          <div>
+            <h3>Vinod Kumar</h3>
+            <div class="role">Principal performance engineer</div>
+            <p>20+ years in performance engineering, SRE and DevOps. Led a performance Center of Excellence, is a Gremlin-certified chaos engineering practitioner, and now benchmarks LLM inference.</p>
+            <div class="links"><a href="https://www.linkedin.com/in/vinod-kumar-0a890518/" target="_blank" rel="noopener">LinkedIn</a><a href="https://kumarvinnodg.github.io/my-profile/" target="_blank" rel="noopener">Full profile</a></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="credentials">
+  <section class="creds" aria-labelledby="cred-h">
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Credentials</div><h2>Certified and tool-proven</h2></div>
-      <div class="grid">
-        <article class="card"><h3>Certifications</h3><ul><li>Gremlin Certified Chaos Engineering Practitioner</li><li>New Relic Certified Performance Pro</li><li>BlazeMeter Performance Testing Certified Master</li><li>Akamai (SOASTA) CloudTest Foundation & Specialist</li><li>Gatling Certified</li></ul></article>
-        <article class="card"><h3>Recognition & community</h3><ul><li>“Above and Beyond” Award (twice) and “SPOT Award”, Cognizant</li><li>O’Reilly Velocity Conference, New York, 2019</li><li>AWS re:Invent, Las Vegas, 2020</li></ul></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <div class="contact-box">
-        <div class="eyebrow">Get in touch</div><h2>Let’s make your system faster and more reliable.</h2>
-        <p class="sub">Tell us about your application and goals. We’ll reply with suggested next steps. The first conversation is free.</p>
-        <div class="contact">
-          <a class="btn" href="mailto:kumarvinodgupta@gmail.com?subject=Free%20consultation%20request">Email us</a>
-          <a class="btn secondary" href="https://www.linkedin.com/in/vinod-kumar-0a890518/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+      <div class="cred-box">
+        <h2 id="cred-h">Certifications</h2>
+        <div class="badges">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Gremlin Certified Chaos Engineering Practitioner</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>New Relic Certified Performance Pro</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>BlazeMeter Performance Testing Certified Master</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Akamai (SOASTA) CloudTest Foundation and Specialist</span>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Gatling Certified</span>
         </div>
+        <p class="cred-note">Industry events: O’Reilly Velocity Conference, New York (2019) and AWS re:Invent, Las Vegas (2020).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-panel">
+        <div>
+          <h2>Tell us what you’re building.</h2>
+          <p class="intro">Share a few details about your application and goals. We’ll reply with suggested next steps. The first conversation is free.</p>
+          <div class="contact-direct">
+            <span>Prefer email?</span>
+            <a href="mailto:kumarvinodgupta@gmail.com">kumarvinodgupta@gmail.com</a>
+          </div>
+        </div>
+        <form id="contact-form">
+          <div class="row">
+            <label>Your name<input name="name" type="text" required autocomplete="name" placeholder="Jane Smith"></label>
+            <label>Work email<input name="email" type="email" required autocomplete="email" placeholder="jane@company.com"></label>
+          </div>
+          <label>Company<input name="company" type="text" autocomplete="organization" placeholder="Optional"></label>
+          <label>What would you like help with?<textarea name="message" required placeholder="For example: we expect 3x traffic next quarter and want to know where our API will break."></textarea></label>
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <p class="form-note">This opens your email app with your message ready to send.</p>
+        </form>
       </div>
     </div>
   </section>
 </main>
-<footer><div class="wrap">© <span id="year"></span> Gupta Performance Labs · Owned and operated by Meenakshi Gupta</div></footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year"></span> Gupta Performance Labs. Owned and operated by Meenakshi Gupta.</span>
+    <span>Performance engineering and reliability consulting</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var EMAIL = 'kumarvinodgupta@gmail.com';
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = new FormData(e.target);
+    var subject = 'Consultation request from ' + f.get('name');
+    var body = 'Name: ' + f.get('name') + '\nCompany: ' + (f.get('company') || '-') + '\nEmail: ' + f.get('email') + '\n\n' + f.get('message');
+    window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+</script>
 </body>
 </html>
